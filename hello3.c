@@ -11,7 +11,6 @@ MODULE_LICENSE("Dual BSD/GPL");
 
 static uint myParam = 1;
 
-// 0444 = S_IRUGO - флаг дозволу на читання параметра
 module_param(myParam, uint, 0444);
 MODULE_PARM_DESC(myParam, "My description");
 
@@ -20,7 +19,6 @@ struct myStruct {
     ktime_t myTime;
 };
 
-// статична зміна голови списку
 static LIST_HEAD(myList);
 int counter;
 
@@ -46,7 +44,6 @@ static int __init hello_init(void)
     counter = 0;
     while (counter < myParam) {
    	 struct myStruct *ptr = kmalloc(sizeof(*ptr), GFP_KERNEL);
-   	 // Примусово встановлення ptr на 0 для 9-го елементу
    	 if (counter == 9) {
    		 ptr = NULL;   	 
    	 }
